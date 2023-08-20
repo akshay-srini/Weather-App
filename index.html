@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="images" data-mouse-at = "0">
+        <div class="text-container">
+            <p class="para">Icecreams</p>
+        </div>    
+
+            <img class="image-box" src="images/1.jpg" alt="1">
+            <img class="image-box" src="images/2.jpg" alt="2">
+            <img class="image-box" src="images/3.jpg" alt="3">
+            <img class="image-box" src="images/4.jpg" alt="4">
+            <img class="image-box" src="images/5.jpg" alt="5">
+            <img class="image-box" src="images/6.jpg" alt="6">
+    </div>
+</body>
+<script>
+    const track = document.getElementsByClassName('images');
+
+    window.onmousedown = e => {
+        track.dataset.mouseDownAt = e.clientX;
+    }
+</script>
+
+</html>
