@@ -35,7 +35,7 @@
 
         const percentage = (mouseDelta / maxDelta) * -100,
         nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
-        
+        console.log('nextPercentage',nextPercentage);
         track.dataset.percentage = nextPercentage;
 
         track.style.transform = `translate(${percentage}%, -50%)`;
