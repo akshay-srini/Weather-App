@@ -8,24 +8,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="images" data-mouse-at = "0">
-        <div class="text-container">
-            <p class="para">Icecreams</p>
-        </div>    
+    <div class="images" data-mouse-at = "0" data-prev-percentage = "0">
+          
 
-            <img class="image-box" src="images/1.jpg" alt="1">
-            <img class="image-box" src="images/2.jpg" alt="2">
-            <img class="image-box" src="images/3.jpg" alt="3">
-            <img class="image-box" src="images/4.jpg" alt="4">
-            <img class="image-box" src="images/5.jpg" alt="5">
-            <img class="image-box" src="images/6.jpg" alt="6">
+            <img class="image-box" src="images/1.jpg" alt="1" draggable="false">
+            <img class="image-box" src="images/2.jpg" alt="2" draggable="false">
+            <img class="image-box" src="images/3.jpg" alt="3" draggable="false">
+            <img class="image-box" src="images/4.jpg" alt="4" draggable="false">
+            <img class="image-box" src="images/5.jpg" alt="5" draggable="false">
+            <img class="image-box" src="images/6.jpg" alt="6" draggable="false">
     </div>
 </body>
 <script>
-    const track = document.getElementsByClassName('images');
+    const track = document.querySelector('.images');
 
     window.onmousedown = e => {
         track.dataset.mouseDownAt = e.clientX;
+        console.log(track.dataset.mouseDownAt);
+    }
+
+    window.onmousemove = e => {
+        if(track.dataset.mouseDownAt === "0") return;
+
+        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+        maxDelta = window.innerWidth / 2;
+
+        const percentage = (mouseDelta / maxDelta) * -100,
+        nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
+        
+        track.dataset.percentage = nextPercentage;
+
+        track.style.transform = `translate(${percentage}%, -50%)`;
+    }
+
+    window.onmouseout = e => {
+        track.dataset.mouseDownAt = "0";
     }
 </script>
 
