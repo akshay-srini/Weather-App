@@ -11,9 +11,110 @@
     <section class = "weather-app">
         <div class="search">
             <div class="searchbar">
-                <input type="text" placeholder="Search"></input>
+                <input type="text" id="search" placeholder="Search"></input>
             </div>
+        </div>
+        <div class="report">
+            <p class="place">Coimbatore</p>
+            <p class="temperature">29°c</p>
+            <p class="climate">Partially Cloudy</p>
+            <p class="desc">Similar temperatures continuing with a chance of rain Friday, Monday & Tuesday.</p>
+        </div>
+        <div class="info">
+            <div class="side">
+                <h3>Humidity</h3>
+                <p id = "humidity">74.1 %</p>
+            <h3>Precipitation</h3>
+            <p  id="precipitation">0 %</p>
+            </div>
+            <div class="side">
+                <h3>Wind Speed</h3>
+                <p id="windSpeed">15 km/h</p>
+                <h3>pressure</h3>
+                <p  id="pressure">1026.1 pa</p>
+            </div>
+            
         </div>
     </section>
 </body>
+<script>
+    const weatherApp = document.querySelector('.weather-app');
+    const report = document.querySelector('.report');
+    const place = document.querySelector('.place') ;
+    const temperature = document.querySelector('.temperature');
+    const climate = document.querySelector('.climate');
+    const desc = document.querySelector('.desc');
+    const search = document.querySelector('#search');
+    const humidity = document.querySelector('#humidity');
+    const precipitation = document.querySelector('#precipitation');
+    const windSpeed = document.querySelector('#windSpeed');
+    const pressure = document.querySelector('#pressure');
+
+    const api_url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
+    // {place}%2CUK?unitGroup=us&key=
+    const api_key = 'MBA28XJNMHKBWUGUT5GWQC7C9';
+
+    search.addEventListener('keydown',async function(event) {
+        if (event.keyCode === 13 || event.key === 'Enter') {
+        const result = event.target.value;
+        
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${result}?%2CUK?unitGroup=us&key=MBA28XJNMHKBWUGUT5GWQC7C9`);
+        var data = await response.json();
+
+        place.innerHTML = data.address;
+        climate.innerHTML = data.currentConditions.conditions;
+        desc.innerHTML = data.description;
+        humidity.innerHTML = data.currentConditions.humidity+"%";
+        pressure.innerHTML = data.currentConditions.pressure +"pa";
+        windSpeed.innerHTML = data.currentConditions.windspeed+"km/h";
+        precip = data.currentConditions.precip;
+        if (precip){
+            precipitation.innerHTML = data.currentConditions.precip+"%";
+            
+        }
+        else {
+            precipitation.innerHTML = "0 %";
+        }
+        console.log(data);
+        condition = data.currentConditions.icon;
+        if(condition.includes("night")){
+            report.style.color = "white";
+            console.log("night");
+            if(condition.includes("cloudy")){
+                console.log("cloudy");
+                weatherApp.style.backgroundImage = "url('images/night.png')";
+            }
+            else if(condition.includes("rain")){
+                console.log("rainy");
+                weatherApp.style.backgroundImage = "url('images/rain.jpeg')";
+            }
+        }
+        else if(condition.includes("day")){
+            console.log("day");
+            report.style.color = "rgb(30, 30, 66)";
+            if(condition.includes("cloudy")){
+                console.log("cloudy");
+                
+                weatherApp.style.backgroundImage = "url('images/cloudy.jpeg')";
+            }
+            else if(condition.includes("rain")){
+                console.log("rainy");
+                weatherApp.style.backgroundImage = "url('images/dayrainy.jpeg')";
+            }
+            else if(condition.includes("overcast")){
+                console.log("overcast");
+                weatherApp.style.backgroundImage = "url('images/overcast.jpg')";
+            }
+        }
+
+        // (32°F − 32) × 5/9 = 0°C
+        tempFahrenheit = data.days[0].temp;
+        tempCelsius = [(tempFahrenheit - 32) * (5/9)]
+        temperature.innerHTML = Math.floor(tempCelsius)+"°c";
+        
+        }
+    });
+
+</script>
+
 </html>
