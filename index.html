@@ -92,11 +92,15 @@
         }
         else{
             console.log("day");
+            weatherApp.style.backgroundImage = "url('images/sunny.jpeg')";
             report.style.color = "rgb(30, 30, 66)";
             if(condition.includes("cloudy")){
                 console.log("cloudy");
-                
                 weatherApp.style.backgroundImage = "url('images/cloudy.jpeg')";
+            }
+            else if(condition.includes("clear")){
+                console.log("clear");
+                weatherApp.style.backgroundImage = "url('images/sunny-2.jpeg')";
             }
             else if(condition.includes("rain")){
                 console.log("rainy");
