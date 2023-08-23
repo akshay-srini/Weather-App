@@ -4,46 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather app</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="images" data-mouse-at = "0" data-prev-percentage = "0">
-          
-
-            <img class="image-box" src="images/1.jpg" alt="1" draggable="false">
-            <img class="image-box" src="images/2.jpg" alt="2" draggable="false">
-            <img class="image-box" src="images/3.jpg" alt="3" draggable="false">
-            <img class="image-box" src="images/4.jpg" alt="4" draggable="false">
-            <img class="image-box" src="images/5.jpg" alt="5" draggable="false">
-            <img class="image-box" src="images/6.jpg" alt="6" draggable="false">
-    </div>
+    <section class = "weather-app">
+        <div class="search">
+            <div class="searchbar">
+                <input type="text" placeholder="Search"></input>
+            </div>
+        </div>
+    </section>
 </body>
-<script>
-    const track = document.querySelector('.images');
-
-    window.onmousedown = e => {
-        track.dataset.mouseDownAt = e.clientX;
-        console.log(track.dataset.mouseDownAt);
-    }
-
-    window.onmousemove = e => {
-        if(track.dataset.mouseDownAt === "0") return;
-
-        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-        maxDelta = window.innerWidth / 2;
-
-        const percentage = (mouseDelta / maxDelta) * -100,
-        nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
-        console.log('nextPercentage',nextPercentage);
-        track.dataset.percentage = nextPercentage;
-
-        track.style.transform = `translate(${percentage}%, -50%)`;
-    }
-
-    window.onmouseout = e => {
-        track.dataset.mouseDownAt = "0";
-    }
-</script>
-
 </html>

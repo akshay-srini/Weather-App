@@ -1,37 +1,46 @@
-body {
-    background-color: black;
+body{
+    background-color: rgb(44, 44, 44);
+    margin: 0%;
+    padding: 0%;
     width: 100vw;
     height: 100vh;
-    margin: 0rem;
     overflow: hidden;
 }
 
-.image-box {
-    width: 40vmin;
-    height: 56vmin;
-    object-fit: cover;
-    object-position: center;
+.weather-app{
+    width: 23vw;
+    height: 85vh;
+    background-color: white;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    vertical-align: middle;
+    border-radius: 20px;
+    background-image: url('../images/rainy.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
     
 }
 
-.images {
+.search{
     display: flex;
-    gap: 4vmin;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.text-container {
-    display: flex;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    padding: 30px;
     align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 
-
-.para {
-    color: white;
-    font-size: 5rem;
-    vertical-align: middle;
+.searchbar input{
+    background-color: white;
+    margin: 7px 24px;
+    padding: 10px 104px;
+    padding-left:10px ;
+    border: none;
+    text-align: justify;
+    border-radius: 10px;
+    border: lightgrey solid 0.1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
