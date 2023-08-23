@@ -76,8 +76,9 @@
             precipitation.innerHTML = "0 %";
         }
         console.log(data);
-        condition = data.currentConditions.icon;
-        if(condition.includes("night")){
+        day = data.currentConditions.icon;
+        condition = data.currentConditions.conditions;
+        if(day.includes("night")){
             report.style.color = "white";
             console.log("night");
             if(condition.includes("cloudy")){
@@ -89,7 +90,7 @@
                 weatherApp.style.backgroundImage = "url('images/rain.jpeg')";
             }
         }
-        else if(condition.includes("day")){
+        else{
             console.log("day");
             report.style.color = "rgb(30, 30, 66)";
             if(condition.includes("cloudy")){
@@ -101,8 +102,9 @@
                 console.log("rainy");
                 weatherApp.style.backgroundImage = "url('images/dayrainy.jpeg')";
             }
-            else if(condition.includes("overcast")){
-                console.log("overcast");
+            else if(condition.includes("Overcast")){
+                console.log("Overcast");
+                report.style.color = "white";
                 weatherApp.style.backgroundImage = "url('images/overcast.jpg')";
             }
         }
