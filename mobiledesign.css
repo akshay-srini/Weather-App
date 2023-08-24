@@ -28,8 +28,7 @@ h3{
 }
 
 .search {
-    margin: 25px;
-    padding: 7% 8%;
+    padding: 10% 8%;
 }
 
 .searchbar {
@@ -94,11 +93,11 @@ h3{
 }
 
 .side h3{
-    font-size: 16px;
+    font-size: 22px;
     padding-bottom: 3px;
 }
 
 .side p{
-    padding-bottom: 20px;
+    padding-bottom: 26px;
 }
 
