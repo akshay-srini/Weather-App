@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather app</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobiledesign.css">
 </head>
 <body>
     <section class = "weather-app">
@@ -50,9 +50,7 @@
     const windSpeed = document.querySelector('#windSpeed');
     const pressure = document.querySelector('#pressure');
 
-    const api_url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
-    // {place}%2CUK?unitGroup=us&key=
-    const api_key = 'MBA28XJNMHKBWUGUT5GWQC7C9';
+    
 
     search.addEventListener('keydown',async function(event) {
         if (event.keyCode === 13 || event.key === 'Enter') {
@@ -83,7 +81,7 @@
             console.log("night");
             if(condition.includes("cloudy")){
                 console.log("cloudy");
-                weatherApp.style.backgroundImage = "url('images/night.png')";
+                weatherApp.style.backgroundImage = "url('images/night.jpg')";
             }
             else if(condition.includes("rain")){
                 console.log("rainy");
@@ -114,11 +112,12 @@
         }
 
         // (32°F − 32) × 5/9 = 0°C
-        tempFahrenheit = data.days[0].temp;
+        tempFahrenheit = data.currentConditions.temp;
         tempCelsius = [(tempFahrenheit - 32) * (5/9)]
         temperature.innerHTML = Math.floor(tempCelsius)+"°c";
         
         }
+        
     });
 
 </script>
